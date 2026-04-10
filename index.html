@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sell on Coupang — Korea's #1 Marketplace | Kontactic</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --orange: #E67926;
+    --amber: #F3B433;
+    --dark: #343534;
+    --white: #FFFFFF;
+    --bg: #F8FAFC;
+    --muted: #64748B;
+    --border: #E2E8F0;
+    --text: #475569;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--white); color: var(--dark); font-family: 'Inter', sans-serif; overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 0 48px; height: 72px;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(255,255,255,0.95); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .logo { font-weight: 700; font-size: 20px; color: var(--dark); text-decoration: none; }
+  .logo span { color: var(--orange); }
+  .nav-links { display: flex; gap: 28px; align-items: center; }
+  .nav-links a { font-size: 14px; font-weight: 500; color: rgba(52,53,52,0.65); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--dark); }
+  .nav-cta { background: var(--dark) !important; color: var(--white) !important; padding: 10px 20px !important; border-radius: 8px; font-weight: 600 !important; transition: all 0.2s !important; }
+  .nav-cta:hover { background: var(--orange) !important; transform: translateY(-1px); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh; display: flex; align-items: center;
+    padding: 140px 48px 80px; position: relative; overflow: hidden;
+    background: linear-gradient(140deg, #fff 0%, #FFF8F0 55%, #FFF3E0 100%);
+  }
+  .hero-blob { position: absolute; width: 650px; height: 650px; background: radial-gradient(circle, rgba(230,121,38,0.11) 0%, transparent 70%); right: -80px; top: 50%; transform: translateY(-50%); pointer-events: none; }
+  .hero-content { position: relative; z-index: 2; max-width: 660px; }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 12px; font-weight: 600; color: var(--orange);
+    letter-spacing: 0.5px; text-transform: uppercase;
+    margin-bottom: 28px; padding: 8px 16px;
+    background: rgba(230,121,38,0.08); border: 1px solid rgba(230,121,38,0.2); border-radius: 100px;
+  }
+  .hero-tag::before { content: ''; width: 7px; height: 7px; background: var(--orange); border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.75)} }
+  h1 { font-size: clamp(44px, 6vw, 70px); font-weight: 700; line-height: 1.05; letter-spacing: -2px; margin-bottom: 24px; color: var(--dark); }
+  h1 em { font-style: normal; background: linear-gradient(135deg, var(--orange), var(--amber)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .hero-sub { font-size: 18px; color: var(--text); line-height: 1.7; max-width: 500px; margin-bottom: 40px; }
+  .hero-sub strong { color: var(--dark); font-weight: 600; }
+  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-primary { background: var(--dark); color: var(--white); padding: 15px 30px; font-size: 15px; font-weight: 600; text-decoration: none; border-radius: 8px; transition: all 0.2s; display: inline-block; box-shadow: 0 2px 8px rgba(0,0,0,0.12); }
+  .btn-primary:hover { background: var(--orange); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(230,121,38,0.3); }
+  .btn-ghost { color: var(--dark); padding: 15px 30px; font-size: 15px; font-weight: 500; text-decoration: none; border: 1.5px solid var(--border); border-radius: 8px; transition: all 0.2s; display: inline-block; }
+  .btn-ghost:hover { border-color: var(--dark); transform: translateY(-1px); }
+  .hero-stats { position: absolute; right: 72px; top: 50%; transform: translateY(-50%); z-index: 2; background: white; border-radius: 16px; padding: 28px 36px; box-shadow: 0 8px 40px rgba(0,0,0,0.08); border: 1px solid var(--border); }
+  .stat-item { text-align: center; padding: 18px 0; }
+  .stat-item:not(:last-child) { border-bottom: 1px solid var(--border); }
+  .stat-num { font-size: 38px; font-weight: 700; line-height: 1; color: var(--dark); letter-spacing: -1px; }
+  .stat-num span { color: var(--orange); }
+  .stat-label { font-size: 12px; color: var(--muted); margin-top: 5px; font-weight: 500; }
+
+  /* MARQUEE */
+  .marquee-wrap { overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 13px 0; background: var(--bg); }
+  .marquee-track { display: flex; animation: marquee 22s linear infinite; width: max-content; }
+  .marquee-item { display: flex; align-items: center; gap: 18px; padding: 0 32px; font-size: 11px; font-weight: 600; color: var(--muted); letter-spacing: 1.5px; text-transform: uppercase; white-space: nowrap; }
+  .marquee-item .dot { color: var(--orange); font-size: 7px; }
+  @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+  /* SHARED SECTION */
+  section { padding: 96px 48px; }
+  .section-label { font-size: 12px; font-weight: 700; color: var(--orange); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 14px; }
+  h2 { font-size: clamp(30px, 4vw, 46px); font-weight: 700; line-height: 1.1; letter-spacing: -1px; margin-bottom: 14px; color: var(--dark); }
+  .section-sub { font-size: 17px; color: var(--text); line-height: 1.7; max-width: 520px; margin-bottom: 52px; }
+
+  /* DEMAND */
+  .demand { background: var(--dark); }
+  .demand h2 { color: white; }
+  .demand .section-label { color: var(--amber); }
+  .demand .section-sub { color: rgba(255,255,255,0.55); max-width: 580px; }
+  .demand-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+  .demand-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 32px; transition: all 0.2s; }
+  .demand-card:hover { background: rgba(255,255,255,0.09); transform: translateY(-2px); }
+  .demand-icon { font-size: 30px; margin-bottom: 16px; }
+  .demand-title { font-size: 16px; font-weight: 600; color: white; margin-bottom: 10px; }
+  .demand-desc { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.7; }
+  .demand-highlight { margin-top: 40px; background: linear-gradient(135deg, rgba(230,121,38,0.15), rgba(243,180,51,0.08)); border: 1px solid rgba(230,121,38,0.3); border-radius: 16px; padding: 28px 36px; display: flex; align-items: center; gap: 20px; }
+  .demand-highlight-icon { font-size: 36px; flex-shrink: 0; }
+  .demand-highlight-text { font-size: 16px; color: rgba(255,255,255,0.8); line-height: 1.7; }
+  .demand-highlight-text strong { color: var(--amber); }
+
+  /* PROBLEM */
+  .problem { background: var(--bg); }
+  .problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .problem-card { background: white; padding: 32px; border-radius: 16px; border: 1px solid var(--border); transition: all 0.2s; box-shadow: 0 2px 10px rgba(0,0,0,0.04); }
+  .problem-card:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.08); }
+  .problem-icon-wrap { width: 46px; height: 46px; background: rgba(230,121,38,0.09); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 21px; margin-bottom: 18px; }
+  .problem-title { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+  .problem-desc { font-size: 14px; color: var(--text); line-height: 1.7; }
+
+  /* PROCESS */
+  .process-steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; }
+  .step { background: white; padding: 32px 26px; border-radius: 16px; border: 1px solid var(--border); transition: all 0.2s; box-shadow: 0 2px 10px rgba(0,0,0,0.04); }
+  .step:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.08); }
+  .step-num-circle { width: 38px; height: 38px; background: linear-gradient(135deg, var(--amber), var(--orange)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: white; margin-bottom: 18px; box-shadow: 0 4px 12px rgba(230,121,38,0.3); }
+  .step-title { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+  .step-desc { font-size: 13px; color: var(--text); line-height: 1.7; }
+  .step-time { display: inline-block; margin-top: 14px; font-size: 12px; font-weight: 600; color: var(--orange); padding: 4px 12px; background: rgba(230,121,38,0.08); border-radius: 100px; }
+
+  /* NO NEED */
+  .no-need { background: var(--bg); }
+  .no-need-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+  .no-card { background: white; padding: 28px; border-radius: 16px; border: 1px solid var(--border); display: flex; align-items: flex-start; gap: 14px; transition: all 0.2s; box-shadow: 0 2px 10px rgba(0,0,0,0.04); }
+  .no-card:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.08); }
+  .no-icon { width: 42px; height: 42px; background: rgba(230,121,38,0.08); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 19px; flex-shrink: 0; }
+  .no-text { font-size: 14px; color: var(--text); line-height: 1.6; }
+  .no-text strong { display: block; color: var(--dark); font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+
+  /* PRICING */
+  .pricing-section { background: var(--bg); }
+  .pricing-wrap { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; max-width: 860px; }
+  .pricing-card { background: white; border: 1.5px solid var(--border); border-radius: 20px; padding: 36px 32px; position: relative; transition: all 0.2s; box-shadow: 0 2px 10px rgba(0,0,0,0.04); display: flex; flex-direction: column; }
+  .pricing-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+  .pricing-card.featured { border-color: var(--orange); border-width: 2px; box-shadow: 0 4px 24px rgba(230,121,38,0.1); background: linear-gradient(160deg, #fff 0%, #FFF8F2 100%); }
+  .pricing-badge { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; padding: 5px 13px; border-radius: 100px; margin-bottom: 22px; text-transform: uppercase; }
+  .pricing-badge.orange { background: var(--orange); color: white; }
+  .pricing-badge.gray { background: #F1F5F9; color: var(--muted); }
+  .pricing-name { font-size: 34px; font-weight: 700; letter-spacing: -1px; margin-bottom: 8px; }
+  .pricing-tagline { font-size: 14px; color: var(--text); margin-bottom: 24px; line-height: 1.6; }
+  .pricing-amount { display: flex; align-items: baseline; gap: 6px; margin-bottom: 6px; }
+  .amount-num { font-size: 50px; font-weight: 700; line-height: 1; letter-spacing: -2px; }
+  .amount-unit { font-size: 15px; color: var(--muted); }
+  .amount-plus { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
+  .amount-plus span { color: var(--orange); font-weight: 600; }
+  .pricing-divider { height: 1px; background: var(--border); margin: 22px 0; }
+  .pricing-includes { font-size: 11px; font-weight: 700; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 14px; }
+  .include-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; flex-grow: 1; }
+  .include-item { display: flex; align-items: flex-start; gap: 9px; font-size: 13px; color: var(--text); line-height: 1.5; }
+  .include-item::before { content: '✓'; color: var(--orange); font-weight: 700; font-size: 13px; flex-shrink: 0; }
+  .addon-table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+  .addon-table th { font-size: 11px; font-weight: 600; color: var(--muted); text-align: left; padding: 7px 0; border-bottom: 1px solid var(--border); text-transform: uppercase; letter-spacing: 0.5px; }
+  .addon-table td { padding: 13px 0; font-size: 13px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .addon-table tr:last-child td { border-bottom: none; }
+  .addon-name { font-weight: 600; color: var(--dark); margin-bottom: 2px; }
+  .addon-desc { font-size: 12px; color: var(--muted); }
+  .addon-price { font-size: 13px; font-weight: 700; color: var(--orange); text-align: right; white-space: nowrap; }
+  .plan-btn { display: block; text-align: center; padding: 14px 20px; border-radius: 10px; font-size: 14px; font-weight: 600; text-decoration: none; transition: all 0.2s; margin-top: auto; }
+  .plan-btn-primary { background: var(--dark); color: white; }
+  .plan-btn-primary:hover { background: var(--orange); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(230,121,38,0.3); }
+  .plan-btn-outline { border: 1.5px solid var(--border); color: var(--dark); }
+  .plan-btn-outline:hover { border-color: var(--dark); transform: translateY(-1px); }
+  .transition-note { background: rgba(230,121,38,0.06); border: 1px solid rgba(230,121,38,0.15); border-radius: 10px; padding: 14px 16px; margin-bottom: 18px; font-size: 13px; color: var(--text); line-height: 1.6; }
+  .transition-note strong { color: var(--dark); }
+
+  /* TRUST */
+  .trust-section { background: white; }
+  .trust-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; margin-bottom: 40px; }
+  .trust-card { background: var(--bg); padding: 32px 24px; border-radius: 16px; text-align: center; border: 1px solid var(--border); transition: all 0.2s; }
+  .trust-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
+  .trust-num { font-size: 42px; font-weight: 700; color: var(--orange); line-height: 1; letter-spacing: -1px; }
+  .trust-label { font-size: 13px; color: var(--muted); margin-top: 7px; line-height: 1.5; font-weight: 500; }
+  .credentials-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .credential-card { background: var(--bg); border: 1px solid var(--border); border-radius: 16px; padding: 26px 28px; display: flex; align-items: flex-start; gap: 14px; transition: all 0.2s; }
+  .credential-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
+  .cred-icon { width: 44px; height: 44px; background: linear-gradient(135deg, var(--amber), var(--orange)); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+  .cred-text { font-size: 14px; color: var(--text); line-height: 1.6; }
+  .cred-text strong { display: block; font-size: 15px; color: var(--dark); font-weight: 600; margin-bottom: 4px; }
+
+  /* CTA */
+  .cta-section { background: var(--dark); text-align: center; padding: 100px 48px; position: relative; overflow: hidden; }
+  .cta-section::before { content: ''; position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(230,121,38,0.18) 0%, transparent 70%); left: 50%; top: 50%; transform: translate(-50%,-50%); pointer-events: none; }
+  .cta-section h2 { color: white; font-size: clamp(34px, 5vw, 58px); margin-bottom: 16px; position: relative; }
+  .cta-sub { font-size: 17px; color: rgba(255,255,255,0.55); margin-bottom: 36px; position: relative; max-width: 460px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+  .btn-white { background: white; color: var(--dark); padding: 16px 42px; font-size: 15px; font-weight: 700; text-decoration: none; border-radius: 10px; display: inline-block; position: relative; transition: all 0.2s; }
+  .btn-white:hover { background: var(--orange); color: white; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(230,121,38,0.4); }
+
+  /* FOOTER */
+  footer { padding: 28px 48px; background: var(--dark); border-top: 1px solid rgba(255,255,255,0.07); display: flex; justify-content: space-between; align-items: center; }
+  footer p { font-size: 13px; color: rgba(255,255,255,0.35); }
+  .footer-logo { font-weight: 700; font-size: 18px; color: white; }
+  .footer-logo span { color: var(--orange); }
+
+  /* ANIMATIONS */
+  .fade-up { opacity: 1; transform: none; }
+
+  @media (max-width: 900px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .hero { padding: 110px 20px 60px; }
+    .hero-stats { display: none; }
+    section { padding: 60px 20px; }
+    .demand-grid, .problem-grid, .no-need-grid, .credentials-grid { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr 1fr; }
+    .trust-grid { grid-template-columns: 1fr 1fr; }
+    .pricing-wrap { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 10px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo">Kont<span>a</span>ctic</a>
+  <div class="nav-links">
+    <a href="#how">How It Works</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#trust">Why Us</a>
+    <a href="#contact" class="nav-cta">Book a Call</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-blob"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Official Coupang Partner · Seoul, Korea</div>
+    <h1>Korea Is the<br><em>Next Big Market.</em><br>Are You In?</h1>
+    <p class="hero-sub">Korea has one of the world's highest e-commerce rates — and Korean consumers are already buying your products. <strong>The demand is there. You're just not capturing it yet.</strong></p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Let's Talk 👋</a>
+      <a href="#how" class="btn-ghost">See How It Works</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item"><div class="stat-num">30<span>M+</span></div><div class="stat-label">Coupang Active Buyers</div></div>
+    <div class="stat-item"><div class="stat-num">#1</div><div class="stat-label">E-commerce Penetration<br>in Asia</div></div>
+    <div class="stat-item"><div class="stat-num">10<span>–20x</span></div><div class="stat-label">Revenue Growth<br>vs. Gray Market</div></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <div class="marquee-item"><span class="dot">●</span> Sauces & Condiments <span class="dot">●</span></div>
+    <div class="marquee-item">Snacks & Crackers <span class="dot">●</span></div>
+    <div class="marquee-item">Beverages <span class="dot">●</span></div>
+    <div class="marquee-item">Seasonings & Spices <span class="dot">●</span></div>
+    <div class="marquee-item">Specialty Foods <span class="dot">●</span></div>
+    <div class="marquee-item">Health Foods <span class="dot">●</span></div>
+    <div class="marquee-item"><span class="dot">●</span> Sauces & Condiments <span class="dot">●</span></div>
+    <div class="marquee-item">Snacks & Crackers <span class="dot">●</span></div>
+    <div class="marquee-item">Beverages <span class="dot">●</span></div>
+    <div class="marquee-item">Seasonings & Spices <span class="dot">●</span></div>
+    <div class="marquee-item">Specialty Foods <span class="dot">●</span></div>
+    <div class="marquee-item">Health Foods <span class="dot">●</span></div>
+  </div>
+</div>
+
+<!-- KOREA MARKET STRIP -->
+<div style="background: var(--bg); border-bottom: 1px solid var(--border); padding: 40px 48px;">
+  <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; text-align: center;">
+    <div>
+      <div style="font-size: 28px; font-weight: 700; color: var(--orange); letter-spacing: -1px;">$120B+</div>
+      <div style="font-size: 13px; color: var(--muted); margin-top: 4px; font-weight: 500;">Korean E-commerce Market</div>
+    </div>
+    <div>
+      <div style="font-size: 28px; font-weight: 700; color: var(--orange); letter-spacing: -1px;">Top 5</div>
+      <div style="font-size: 13px; color: var(--muted); margin-top: 4px; font-weight: 500;">Global E-commerce Market</div>
+    </div>
+    <div>
+      <div style="font-size: 28px; font-weight: 700; color: var(--orange); letter-spacing: -1px;">78%</div>
+      <div style="font-size: 13px; color: var(--muted); margin-top: 4px; font-weight: 500;">Online Shopping Penetration Rate</div>
+    </div>
+    <div>
+      <div style="font-size: 28px; font-weight: 700; color: var(--orange); letter-spacing: -1px;">High</div>
+      <div style="font-size: 13px; color: var(--muted); margin-top: 4px; font-weight: 500;">Preference for Western Brands</div>
+    </div>
+  </div>
+</div>
+<section class="demand">
+  <div class="section-label">Why Now</div>
+  <h2>Your Korean Customers Are Already Buying</h2>
+  <p class="section-sub">We verify real Korean demand for your brand before we start. If it's there — and it usually is — the opportunity is bigger than you think.</p>
+  <div class="demand-grid fade-up">
+    <div class="demand-card">
+      <div class="demand-icon">📦</div>
+      <div class="demand-title">Cross-border Orders</div>
+      <div class="demand-desc">Korean buyers are already purchasing via Amazon Global or Shopify international — paying more and waiting longer to get your product.</div>
+    </div>
+    <div class="demand-card">
+      <div class="demand-icon">🔍</div>
+      <div class="demand-title">Gray-Market Resellers</div>
+      <div class="demand-desc">Your products may already appear on Korean marketplaces through resellers — at inflated prices, with zero brand control, and none of the revenue going to you.</div>
+    </div>
+    <div class="demand-card">
+      <div class="demand-icon">📈</div>
+      <div class="demand-title">Proven Product-Market Fit</div>
+      <div class="demand-desc">Existing cross-border demand proves Korean consumers want your product. Going local doesn't create demand — it multiplies what's already there.</div>
+    </div>
+  </div>
+  <div class="demand-highlight fade-up">
+    <div class="demand-highlight-icon">🚀</div>
+    <div class="demand-highlight-text">Brands that go local on Coupang after cross-border validation typically see <strong>10–20x revenue growth</strong> — because the majority of Korean consumers shop exclusively on local platforms like Coupang.</div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem">
+  <div class="section-label">The Challenge</div>
+  <h2>Why Brands Haven't Entered Korea — Yet</h2>
+  <p class="section-sub">These barriers are real. But they don't have to be your problem to solve. 😅</p>
+  <div class="problem-grid fade-up">
+    <div class="problem-card"><div class="problem-icon-wrap">🏢</div><div class="problem-title">No Korean Entity</div><div class="problem-desc">Setting up a Korean corporation takes months, legal fees, and a local director. Most brands don't have the bandwidth.</div></div>
+    <div class="problem-card"><div class="problem-icon-wrap">🛃</div><div class="problem-title">Import Complexity</div><div class="problem-desc">Korean customs, food labeling laws, and import clearance are highly specific. One wrong label = shipment rejected.</div></div>
+    <div class="problem-card"><div class="problem-icon-wrap">🗣️</div><div class="problem-title">No Local Team</div><div class="problem-desc">Korean customer service, platform management, and logistics all require people on the ground — speaking Korean.</div></div>
+    <div class="problem-card"><div class="problem-icon-wrap">💸</div><div class="problem-title">High Setup Cost</div><div class="problem-desc">Hiring a local employee costs $60K+ per year before benefits. That's before you've sold a single unit.</div></div>
+  </div>
+</section>
+
+<!-- HOW -->
+<section id="how">
+  <div class="section-label">How It Works</div>
+  <h2>From Contract to Coupang in 3 Weeks</h2>
+  <p class="section-sub">We handle every step. You just ship the product.</p>
+  <div class="process-steps fade-up">
+    <div class="step"><div class="step-num-circle">01</div><div class="step-title">Documents</div><div class="step-desc">You send product info, ingredients, and certificates. We tell you exactly what's needed — no guesswork.</div><span class="step-time">Week 1</span></div>
+    <div class="step"><div class="step-num-circle">02</div><div class="step-title">Labeling</div><div class="step-desc">We create Korean-compliant labels that pass customs. No rejections, no delays, no surprises.</div><span class="step-time">Week 1–2</span></div>
+    <div class="step"><div class="step-num-circle">03</div><div class="step-title">Clearance</div><div class="step-desc">Inventory arrives in Korea. We handle customs, duties, and delivery to Coupang's fulfillment center.</div><span class="step-time">Week 2–3</span></div>
+    <div class="step"><div class="step-num-circle">04</div><div class="step-title">Live 🎉</div><div class="step-desc">Your product is live with same-day / next-day delivery. We handle orders, returns, and customer service.</div><span class="step-time">Week 3</span></div>
+  </div>
+</section>
+
+<!-- NO NEED -->
+<section class="no-need">
+  <div class="section-label">What You Don't Need</div>
+  <h2>Zero Setup on Your End</h2>
+  <p class="section-sub">We act as your Korean entity — legally, operationally, logistically.</p>
+  <div class="no-need-grid fade-up">
+    <div class="no-card"><div class="no-icon">🏗️</div><div class="no-text"><strong>Korean Corporation</strong>We register and operate under our entity on your behalf.</div></div>
+    <div class="no-card"><div class="no-icon">👥</div><div class="no-text"><strong>Local Hire</strong>Our team handles all Korean-language operations end-to-end.</div></div>
+    <div class="no-card"><div class="no-icon">📦</div><div class="no-text"><strong>Logistics Partner</strong>We manage warehousing and Coupang Rocket fulfillment.</div></div>
+    <div class="no-card"><div class="no-icon">🧾</div><div class="no-text"><strong>Tax Filing</strong>VAT and all Korean tax obligations handled entirely by us.</div></div>
+    <div class="no-card"><div class="no-icon">🛃</div><div class="no-text"><strong>Customs Knowledge</strong>We've cleared hundreds of food SKUs through Korean customs.</div></div>
+    <div class="no-card"><div class="no-icon">🏪</div><div class="no-text"><strong>Coupang Account</strong>We list and manage products under our verified seller account.</div></div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="pricing-section">
+  <div class="section-label">Pricing</div>
+  <h2>Pick Your Starting Point</h2>
+  <p class="section-sub">Start lean with Spark to validate, then scale up to Blaze when you're ready for full-service. Switching is always seamless — zero downtime. 🚀</p>
+  <div class="pricing-wrap fade-up">
+
+    <!-- SPARK -->
+    <div class="pricing-card featured">
+      <div class="pricing-badge orange">Start Here</div>
+      <div class="pricing-name">Spark</div>
+      <div class="pricing-tagline">Fastest, lowest-risk entry. No Korean entity needed — we handle everything under ours.</div>
+      <div class="pricing-amount"><div class="amount-num">$300</div><div class="amount-unit">/ month</div></div>
+      <div class="amount-plus">+ <span>3% of gross sales</span> · Min. $500/mo · No lock-in</div>
+      <div class="pricing-divider"></div>
+      <div class="pricing-includes">What's Included</div>
+      <div class="include-list">
+        <div class="include-item">Import authority & customs clearance</div>
+        <div class="include-item">Seller of Record on Coupang (our entity)</div>
+        <div class="include-item">Korean-language customer service</div>
+        <div class="include-item">Payment processing & VAT filing</div>
+        <div class="include-item">Coupang Rocket fulfillment coordination</div>
+        <div class="include-item">Monthly settlement & bank remittance</div>
+      </div>
+      <div class="pricing-divider"></div>
+      <div class="pricing-includes">Optional Add-ons</div>
+      <table class="addon-table">
+        <thead><tr><th>Service</th><th style="text-align:right">Price</th></tr></thead>
+        <tbody>
+          <tr><td><div class="addon-name">Korean Product Pages</div><div class="addon-desc">Localized 20,000px PDP per SKU</div></td><td><div class="addon-price">$300/SKU</div></td></tr>
+          <tr><td><div class="addon-name">Market Advisory</div><div class="addon-desc">Monthly Korean market strategy consulting</div></td><td><div class="addon-price">$400/mo</div></td></tr>
+          <tr><td><div class="addon-name">Coupang Ads</div><div class="addon-desc">Keyword strategy & bid optimization</div></td><td><div class="addon-price">$500/mo</div></td></tr>
+        </tbody>
+      </table>
+      <div class="pricing-divider"></div>
+      <a href="#contact" class="plan-btn plan-btn-primary">Get Started with Spark</a>
+    </div>
+
+    <!-- BLAZE -->
+    <div class="pricing-card">
+      <div class="pricing-badge gray">Full Service</div>
+      <div class="pricing-name">Blaze</div>
+      <div class="pricing-tagline">Your entity, fully owned. We run everything — operations, marketing, and growth strategy included.</div>
+      <div class="pricing-amount"><div class="amount-num">$5K</div><div class="amount-unit">/ month</div></div>
+      <div class="amount-plus">+ <span>10% of gross sales</span> · +$3K entity setup · +$1.2K/yr tax</div>
+      <div class="pricing-divider"></div>
+      <div class="pricing-includes">Everything in Spark, Plus</div>
+      <div class="include-list">
+        <div class="include-item">Full marketing strategy & execution</div>
+        <div class="include-item">Coupang PPC advertising management</div>
+        <div class="include-item">Influencer & review campaigns</div>
+        <div class="include-item">Conversion rate optimization</div>
+        <div class="include-item">Competitive analysis & growth planning</div>
+        <div class="include-item">Roadmap: Naver, Kakao, D2C expansion</div>
+      </div>
+      <div class="pricing-divider"></div>
+      <div class="transition-note">💡 <strong>Seamless upgrade from Spark or Flame.</strong> We migrate all listings with zero downtime.</div>
+      <a href="#contact" class="plan-btn plan-btn-outline">Learn More About Blaze</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- TRUST -->
+<section id="trust" class="trust-section">
+  <div class="section-label">Why Kontactic</div>
+  <h2>Built for This Market</h2>
+  <p class="section-sub">15+ years of Korean e-commerce expertise, backed by government recognition and a direct Coupang partnership.</p>
+  <div class="trust-grid fade-up">
+    <div class="trust-card"><div class="trust-num">15+</div><div class="trust-label">Years in Korean E-commerce</div></div>
+    <div class="trust-card"><div class="trust-num">1K+</div><div class="trust-label">Brands & Clients Served</div></div>
+    <div class="trust-card"><div class="trust-num">200B</div><div class="trust-label">KRW Cumulative GMV</div></div>
+    <div class="trust-card"><div class="trust-num">#1</div><div class="trust-label">Official Coupang Partner</div></div>
+  </div>
+  <div class="credentials-grid fade-up">
+    <div class="credential-card"><div class="cred-icon">🏆</div><div class="cred-text"><strong>Commendation from Korea Customs Service</strong>Recognized by the Commissioner of Korea Customs Service (2021) for excellence in cross-border e-commerce operations.</div></div>
+    <div class="credential-card"><div class="cred-icon">🌐</div><div class="cred-text"><strong>KOTRA Certified Global Business Consultant</strong>CEO certified by Korea's national trade promotion agency — the gold standard for Korean market entry expertise.</div></div>
+    <div class="credential-card"><div class="cred-icon">🏛️</div><div class="cred-text"><strong>Government Advisory Roles</strong>Committee Member for Angel Investment (Ministry of SMEs); Official Lecturer for Seoul City, Korea Customs Service, and KITA.</div></div>
+    <div class="credential-card"><div class="cred-icon">🔬</div><div class="cred-text"><strong>Certified Innovation Company</strong>Inno-Biz, Main-Biz & Venture certified. KOITA-certified R&D Center. Patented e-commerce analytics technology (No. 10-2483987).</div></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <h2>Let's Find Your Korean Buyers <img src="https://flagcdn.com/w40/kr.png" alt="Korea" style="width:48px;height:auto;vertical-align:middle;margin-left:4px;border-radius:4px;display:inline-block;"></h2>
+  <p class="cta-sub">Fill in the form and we'll get back to you with the Korean demand data we've found for your brand.</p>
+  <form action="https://formspree.io/f/xreogyrq" method="POST" style="max-width:480px;margin:0 auto;display:flex;flex-direction:column;gap:12px;position:relative;">
+    <input type="text" name="name" placeholder="Your Name" required style="padding:14px 18px;border-radius:8px;border:none;font-size:15px;font-family:'Inter',sans-serif;outline:none;">
+    <input type="email" name="email" placeholder="Your Email" required style="padding:14px 18px;border-radius:8px;border:none;font-size:15px;font-family:'Inter',sans-serif;outline:none;">
+    <input type="text" name="brand" placeholder="Brand Name" style="padding:14px 18px;border-radius:8px;border:none;font-size:15px;font-family:'Inter',sans-serif;outline:none;">
+    <textarea name="message" placeholder="Tell us about your brand & Korean demand (optional)" rows="3" style="padding:14px 18px;border-radius:8px;border:none;font-size:15px;font-family:'Inter',sans-serif;outline:none;resize:none;"></textarea>
+    <button type="submit" style="background:white;color:var(--dark);padding:16px;font-size:15px;font-weight:700;border:none;border-radius:10px;cursor:pointer;font-family:'Inter',sans-serif;">Send Message →</button>
+  </form>
+</section>
+
+<footer>
+  <div class="footer-logo">Kont<span>a</span>ctic</div>
+  <p>© 2025 Kontactic. Seoul, Korea.</p>
+  <p style="color:rgba(255,255,255,0.35);font-size:13px;unicode-bidi:bidi-override;direction:rtl;">moc.citcatnok&#64;mikhjm3</p>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+ 
